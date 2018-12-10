@@ -60,4 +60,5 @@ $TextBlock = $TextBlockXML.Node.GetElementsByTagName("TextBlock")
 Update-BackGroundImages -SourcePath $GlobalConfig.ImageSource -TargetPath $GlobalConfig.ImageTarget -Message $TextMessage `
                         -XOffset $TextBlock.XOffset -YOffset $TextBlock.YOffset `
                         -Red $GlobalConfig.Red -Green $GlobalConfig.Green -Blue $GlobalConfig.Blue `
-                        -Transparency $GlobalConfig.Transparency
+                        -Transparency $GlobalConfig.Transparency `
+                        -TextFont $GlobalConfig.Font
