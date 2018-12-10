@@ -4,18 +4,31 @@
         <Green>255</Green>
         <Blue>255</Blue>
         <Font>Arial</Font>
-        <FontSize>25</FontSize>
+        <FontSize>15</FontSize>
         <Transparency>255</Transparency>
         <ImageSource>C:\Code\BackgroundImagesEditor.git\img0.jpg</ImageSource>
         <ImageTarget>C:\Code\BackgroundImagesEditor.git\result.jpg</ImageTarget>
     </Global>
     <TextBlock>
-        <XOffset>1500</XOffset>
-        <YOffset>1000</YOffset>
-        <Text>This is a TextBlock
-[IPAddressxs]
-line 1
-From the XML file
+        <XOffset>1300</XOffset>
+        <YOffset>900</YOffset>
+        <Text>This is a TextBlock Using Macros
+[Domain]
+[Hostname]
+[Username]
+[Manufacturer]
+[Model]
         </Text>
     </TextBlock>
 </Config>
+<!-- 
+Supported Macros
+
+TODO
+[IPAddress]
+[SubNetMask]
+[GateWay]
+
+[Win10Release]
+
+-->

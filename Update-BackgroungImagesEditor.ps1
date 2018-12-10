@@ -55,12 +55,61 @@ $TextBlock = $TextBlockXML.Node.GetElementsByTagName("TextBlock")
 
 [string]$TextMessage = $TextBlock.Text
 
-if ($TextMessage -Match ([Regex]::Escape("[IPAddress]")))
-{
-    $TextMessage  = $TextMessage -replace ([Regex]::Escape("[IPAddress]")),"192.168.0.1"
-}
 
-Update-BackGroundImages -SourcePath $GlobalConfig.ImageSource -TargetPath $GlobalConfig.ImageTarget -Message $TextMessage `
+
+Function Run-Macros()
+{   
+    Param(
+        [Parameter(ValueFromPipeline=$False, Mandatory=$True)]
+        [string]$Text
+        )
+
+    $Win32_ComputerSystem = Get-WMIObject -class Win32_ComputerSystem | Select-Object *
+
+    if ($TextMessage -Match ([Regex]::Escape("[Domain]")))
+    {# username Macro
+        $Domain = $Win32_ComputerSystem.Domain
+        $TextMessage  = $TextMessage -replace ([Regex]::Escape("[Domain]")),$Domain
+    }
+
+    if ($TextMessage -Match ([Regex]::Escape("[Username]")))
+    {# username Macro
+        #TODO need to remove Domain from username
+        $Domain = $Win32_ComputerSystem.Domain
+        $UserName = ($Win32_ComputerSystem.Username).replace("$Domain\","")
+        $TextMessage  = $TextMessage -replace ([Regex]::Escape("[Username]")),($UserName)
+    }
+
+    if ($TextMessage -Match ([Regex]::Escape("[Manufacturer]")))
+    {# username Macro
+    
+        $TextMessage  = $TextMessage -replace ([Regex]::Escape("[Manufacturer]")),($Win32_ComputerSystem.Manufacturer)
+    }
+
+    if ($TextMessage -Match ([Regex]::Escape("[Model]")))
+    {# username Macro
+    
+        $TextMessage  = $TextMessage -replace ([Regex]::Escape("[Model]")),($Win32_ComputerSystem.Model)
+    }    
+
+        if ($TextMessage -Match ([Regex]::Escape("[IPAddress]")))
+        {#TODO
+           # $TextMessage  = $TextMessage -replace ([Regex]::Escape("[IPAddress]")),"192.168.0.1"
+        }
+        
+        if ($TextMessage -Match ([Regex]::Escape("[Hostname]")))
+        {#TODO
+            $TextMessage  = $TextMessage -replace ([Regex]::Escape("[Hostname]")),(hostname)
+        }
+        
+
+Return $TextMessage
+
+} 
+
+$TextMessageMacro  = Run-Macros -Text $TextMessage
+
+Update-BackGroundImages -SourcePath $GlobalConfig.ImageSource -TargetPath $GlobalConfig.ImageTarget -Message $TextMessageMacro `
                         -XOffset $TextBlock.XOffset -YOffset $TextBlock.YOffset `
                         -Red $GlobalConfig.Red -Green $GlobalConfig.Green -Blue $GlobalConfig.Blue `
                         -Transparency $GlobalConfig.Transparency `
