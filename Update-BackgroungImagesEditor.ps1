@@ -55,7 +55,10 @@ $TextBlock = $TextBlockXML.Node.GetElementsByTagName("TextBlock")
 
 [string]$TextMessage = $TextBlock.Text
 
-
+if ($TextMessage -Match ([Regex]::Escape("[IPAddress]")))
+{
+    $TextMessage  = $TextMessage -replace ([Regex]::Escape("[IPAddress]")),"192.168.0.1"
+}
 
 Update-BackGroundImages -SourcePath $GlobalConfig.ImageSource -TargetPath $GlobalConfig.ImageTarget -Message $TextMessage `
                         -XOffset $TextBlock.XOffset -YOffset $TextBlock.YOffset `

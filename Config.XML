@@ -10,11 +10,12 @@
         <ImageTarget>C:\Code\BackgroundImagesEditor.git\result.jpg</ImageTarget>
     </Global>
     <TextBlock>
-    <XOffset>200</XOffset>
-    <YOffset>5</YOffset>
-    <Text>This is a TextBlock
+        <XOffset>1500</XOffset>
+        <YOffset>1000</YOffset>
+        <Text>This is a TextBlock
+[IPAddressxs]
 line 1
 From the XML file
-    </Text>
+        </Text>
     </TextBlock>
 </Config>
