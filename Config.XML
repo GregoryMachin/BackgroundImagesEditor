@@ -1,0 +1,20 @@
+<Config>
+    <Global>
+        <Red>255</Red>
+        <Green>255</Green>
+        <Blue>255</Blue>
+        <Font>Verdana</Font>
+        <FontSize>25</FontSize>
+        <Transparency>255</Transparency>
+        <ImageSource>C:\Code\BackgroundImagesEditor.git\img0.jpg</ImageSource>
+        <ImageTarget>C:\Code\BackgroundImagesEditor.git\result.jpg</ImageTarget>
+    </Global>
+    <TextBlock>
+    <XOffset>200</XOffset>
+    <YOffset>5</YOffset>
+    <Text>This is a TextBlock
+line 1
+From the XML file
+    </Text>
+    </TextBlock>
+</Config>
